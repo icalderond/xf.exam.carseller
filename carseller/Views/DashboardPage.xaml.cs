@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using carseller.ViewModels;
 using Xamarin.Forms;
 
 namespace carseller.Views
@@ -10,6 +8,7 @@ namespace carseller.Views
         public DashboardPage()
         {
             InitializeComponent();
+            this.BindingContext = new DashboardViewModel();
         }
     }
 }
