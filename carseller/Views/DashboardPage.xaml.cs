@@ -5,10 +5,17 @@ namespace carseller.Views
 {
     public partial class DashboardPage : ContentPage
     {
+        private DashboardViewModel ViewModel = new DashboardViewModel();
         public DashboardPage()
         {
             InitializeComponent();
-            this.BindingContext = new DashboardViewModel();
+            this.BindingContext = ViewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _ = ViewModel.LoadData();
         }
     }
 }

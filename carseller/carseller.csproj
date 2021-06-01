@@ -22,5 +22,6 @@
     <Folder Include="Persistence\" />
     <Folder Include="Abstractions\" />
     <Folder Include="Mocks\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
 </Project>

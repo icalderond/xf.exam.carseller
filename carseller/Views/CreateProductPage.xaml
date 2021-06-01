@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="carseller.Views.CreateProductPage"
+    NavigationPage.BackButtonTitle="Atras"
+    NavigationPage.HasBackButton="True">
+    <ContentPage.Resources>
+
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Padding="0,0,0,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Text="Add Product" FontSize="Title" FontAttributes="Bold" Margin="15,10"/>
+            <StackLayout Grid.Row="1" Padding="15,5" Spacing="15">
+
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="Label" x:Key="TitleLabelStyle">
+                            <Setter Property="FontAttributes" Value="Bold"/>
+                            <Setter Property="FontSize" Value="Medium"/>
+                        </Style>
+                    </ResourceDictionary>
+                    <ResourceDictionary>
+                        <Style TargetType="Label" x:Key="ContentLabelStyle">
+                            <Setter Property="FontSize" Value="Medium"/>
+                            <Setter Property="Margin" Value="5"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+
+                <StackLayout>
+                    <Label Text="{Binding Source={x:Reference entryBrand}, Path=Placeholder}" Style="{StaticResource TitleLabelStyle}" IsVisible="{Binding Source={x:Reference entryBrand}, Path=Text, Converter={StaticResource IsNotNullOrWhiteSpaceConverter}}"/>
+                    <Entry x:Name="entryBrand" Placeholder="Brand" MaxLength="50"  Text="{Binding Product.Brand}" Style="{StaticResource ContentLabelStyle}"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="{Binding Source={x:Reference entryModel}, Path=Placeholder}" Style="{StaticResource TitleLabelStyle}" IsVisible="{Binding Source={x:Reference entryModel}, Path=Text, Converter={StaticResource IsNotNullOrWhiteSpaceConverter}}"/>
+                    <Entry x:Name="entryModel" Placeholder="Model" MaxLength="50" Text="{Binding Product.Model}" Style="{StaticResource ContentLabelStyle}"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="{Binding Source={x:Reference entryYear}, Path=Placeholder}" Style="{StaticResource TitleLabelStyle}" IsVisible="{Binding Source={x:Reference entryYear}, Path=Text, Converter={StaticResource IsNotNullOrWhiteSpaceConverter}}"/>
+                    <Entry x:Name="entryYear" Placeholder="Year" Keyboard="Numeric"  Text="{Binding Product.Year}" Style="{StaticResource ContentLabelStyle}"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="{Binding Source={x:Reference entryKilometers}, Path=Placeholder}" Style="{StaticResource TitleLabelStyle}" IsVisible="{Binding Source={x:Reference entryKilometers}, Path=Text, Converter={StaticResource IsNotNullOrWhiteSpaceConverter}}"/>
+                    <Entry x:Name="entryKilometers" Placeholder="Kilometers" Keyboard="Numeric"  Text="{Binding Product.Kilometers}"  Style="{StaticResource ContentLabelStyle}"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="{Binding Source={x:Reference entryPrice}, Path=Placeholder}" Style="{StaticResource TitleLabelStyle}" IsVisible="{Binding Source={x:Reference entryPrice}, Path=Text, Converter={StaticResource IsNotNullOrWhiteSpaceConverter}}"/>
+                    <Entry x:Name="entryPrice" Placeholder="Price" MaxLength="50"  Text="{Binding Product.Price}" Style="{StaticResource ContentLabelStyle}"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="{Binding Source={x:Reference entryDescription}, Path=Placeholder}" Style="{StaticResource TitleLabelStyle}" IsVisible="{Binding Source={x:Reference entryDescription}, Path=Text, Converter={StaticResource IsNotNullOrWhiteSpaceConverter}}"/>
+                    <Entry x:Name="entryDescription" Placeholder="Description" MaxLength="100"  Text="{Binding Product.Description}" Style="{StaticResource ContentLabelStyle}"/>
+                </StackLayout>
+
+            </StackLayout>
+            <StackLayout Grid.Row="2" Padding="15,0,15,15" Spacing="5">
+                <Button BackgroundColor="Green" Text="SAVE" TextColor="White" FontSize="Medium"
+                        FontAttributes="Bold" Command="{Binding SaveCommand}"/>
+                <Button BackgroundColor="Red" Text="CANCEL" TextColor="White" FontSize="Medium"
+                        FontAttributes="Bold" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

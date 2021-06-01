@@ -63,11 +63,26 @@
                       SeparatorVisibility="None"
                       VerticalScrollBarVisibility="Never"
                       HasUnevenRows="True" ItemTemplate="{StaticResource productTemplate}"/>
-            <Frame VerticalOptions="End" HorizontalOptions="End" HasShadow="False"
-                   IsClippedToBounds="False" CornerRadius="20" Padding="5" HeightRequest="30" WidthRequest="30" BackgroundColor="Green">
+            <Frame Grid.Row="1"
+                   VerticalOptions="End"
+                   HorizontalOptions="End"
+                   HasShadow="False"
+                   IsClippedToBounds="False"
+                   CornerRadius="30"
+                   Padding="5"
+                   HeightRequest="50"
+                   WidthRequest="50"
+                   BackgroundColor="Green"
+                   Margin="0,0,20,20">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CreateCommand}"/>
+                </Frame.GestureRecognizers>
                 <Label Text="+"
                        HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
                        TextColor="White"
+                       FontSize="40"
                        VerticalTextAlignment="Center"/>
             </Frame>
         </Grid>
