@@ -5,10 +5,10 @@ namespace carseller.Views
 {
     public partial class CreateProductPage : ContentPage
     {
-        public CreateProductPage()
+        public CreateProductPage(int productId = 0)
         {
             InitializeComponent();
-            this.BindingContext = new CreateProductViewModel();
+            this.BindingContext = new CreateProductViewModel(productId);
         }
     }
 }

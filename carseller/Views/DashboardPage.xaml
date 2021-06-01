@@ -62,7 +62,8 @@
             <ListView Grid.Row="1" ItemsSource="{Binding Products}"
                       SeparatorVisibility="None"
                       VerticalScrollBarVisibility="Never"
-                      HasUnevenRows="True" ItemTemplate="{StaticResource productTemplate}"/>
+                      HasUnevenRows="True" ItemTemplate="{StaticResource productTemplate}"
+                      SelectedItem="{Binding ProductSelected}"/>
             <Frame Grid.Row="1"
                    VerticalOptions="End"
                    HorizontalOptions="End"

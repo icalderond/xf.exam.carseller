@@ -11,8 +11,9 @@ namespace carseller.ViewModels
         private DbContext DbContext;
         #endregion Variables
 
-        public CreateProductViewModel()
+        public CreateProductViewModel(int _productId)
         {
+            ProductId = _productId;
             _ = LoadData();
         }
 
@@ -20,6 +21,9 @@ namespace carseller.ViewModels
         {
             DbContext = new DbContext();
             await DbContext.Initialize();
+
+            if (ProductId > 0)
+                Product = await DbContext.Products.Get(ProductId);
         }
 
         #region Properties
@@ -30,6 +34,12 @@ namespace carseller.ViewModels
             set => Set(ref _Product, value);
         }
 
+        private int _ProductId;
+        public int ProductId
+        {
+            get => _ProductId;
+            set => Set(ref _ProductId, value);
+        }
         #endregion Properties
 
         #region Commands
@@ -37,6 +47,36 @@ namespace carseller.ViewModels
         public ActionCommand SaveCommand
         {
             get => _SaveCommand = _SaveCommand ?? new ActionCommand(SaveAsync);
+        }
+
+        private ActionCommand _DeleteCommand;
+        public ActionCommand DeleteCommand
+        {
+            get => _DeleteCommand = _DeleteCommand ?? new ActionCommand(DeleteAsync);
+        }
+
+        #endregion Commands
+
+        #region Methods
+        private async void DeleteAsync()
+        {
+            try
+            {
+                var allowDelete = await App.Current.MainPage.DisplayAlert("Delete message", "This product will be deleted, ¿are you sure?", "Delete", "No delete");
+
+                if (allowDelete)
+                {
+                    var productToDelete = await DbContext.Products.Get(ProductId);
+                    await DbContext.Products.Delete(productToDelete);
+                    await App.Current.MainPage.DisplayAlert("Deleted", $"Product was deleted", "Ok");
+
+                    await App.Current.MainPage.Navigation.PopAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
 
         private async void SaveAsync()
@@ -52,8 +92,12 @@ namespace carseller.ViewModels
                 if (Product.Price <= 0)
                     throw new Exception("The fiel Price is required");
 
-                var idSaved = await DbContext.Products.Insert(Product);
-                await App.Current.MainPage.DisplayAlert("Saved", $"Saved product with id {idSaved}", "Ok");
+                if (ProductId > 0)
+                    await DbContext.Products.Update(Product);
+                else
+                    await DbContext.Products.Insert(Product);
+
+                await App.Current.MainPage.DisplayAlert("Saved", $"Product was saved", "Ok");
 
                 await App.Current.MainPage.Navigation.PopAsync();
             }
@@ -62,6 +106,6 @@ namespace carseller.ViewModels
                 await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
             }
         }
-        #endregion Commands
+        #endregion Methods
     }
 }

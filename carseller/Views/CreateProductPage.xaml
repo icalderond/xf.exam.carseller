@@ -9,13 +9,13 @@
 
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid Padding="0,0,0,20">
+        <Grid Padding="0,0,0,30">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Text="Add Product" FontSize="Title" FontAttributes="Bold" Margin="15,10"/>
+            <Label Grid.Row="0" Text="Product" FontSize="Title" FontAttributes="Bold" Margin="15,10"/>
             <StackLayout Grid.Row="1" Padding="15,5" Spacing="15">
 
                 <StackLayout.Resources>
@@ -67,8 +67,15 @@
             <StackLayout Grid.Row="2" Padding="15,0,15,15" Spacing="5">
                 <Button BackgroundColor="Green" Text="SAVE" TextColor="White" FontSize="Medium"
                         FontAttributes="Bold" Command="{Binding SaveCommand}"/>
-                <Button BackgroundColor="Red" Text="CANCEL" TextColor="White" FontSize="Medium"
-                        FontAttributes="Bold" />
+                <Button BackgroundColor="Red" Text="DELETE" TextColor="White" FontSize="Medium"
+                        FontAttributes="Bold" Command="{Binding DeleteCommand}"
+                        IsVisible="True">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding ProductId}" Value="0">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

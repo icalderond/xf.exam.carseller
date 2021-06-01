@@ -34,6 +34,18 @@ namespace carseller.ViewModels
             get => _Products;
             set => Set(ref _Products, value);
         }
+
+        private Product _ProductSelected;
+        public Product ProductSelected
+        {
+            get => _ProductSelected;
+            set
+            {
+                Set(ref _ProductSelected, value);
+                if (value != null)
+                    UpdateCommand.Execute(value.Id);
+            }
+        }
         #endregion Properties
 
         #region Commands
@@ -43,6 +55,15 @@ namespace carseller.ViewModels
             get => _CreateCommand = _CreateCommand ?? new ActionCommand(async () =>
             {
                 await App.Current.MainPage.Navigation.PushAsync(new CreateProductPage());
+            });
+        }
+
+        private ActionCommand<int> _UpdateCommand;
+        public ActionCommand<int> UpdateCommand
+        {
+            get => _UpdateCommand = _UpdateCommand ?? new ActionCommand<int>(async (productId) =>
+            {
+                await App.Current.MainPage.Navigation.PushAsync(new CreateProductPage(productId));
             });
         }
         #endregion Commands
