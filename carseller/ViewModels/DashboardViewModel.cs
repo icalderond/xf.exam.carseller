@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Threading.Tasks;
 using carseller.Mocks;
@@ -14,16 +16,29 @@ namespace carseller.ViewModels
         public DbContext DbContext { get; set; }
         #endregion Variables
 
+        public DashboardViewModel()
+        {
+            Initializer();
+        }
+
+        private async void Initializer()
+        {
+            DbContext = new DbContext();
+            await DbContext.Initialize();
+        }
+
         #region Methods
         public async Task LoadData()
         {
-            DbContext = new DbContext();
-            await DbContext.Products.Initialize();
             var productsDB = await DbContext.Products.Get();
-            if (!productsDB.Any()) productsDB = ProductsMock.Products;
+            if (!productsDB.Any())
+            {
+                foreach (var item in ProductsMock.Products)
+                    await DbContext.Products.Insert(item);
 
-            productsDB = productsDB.OrderByDescending(x => x.Id).ToList();
-            Products = new ObservableCollection<Product>(productsDB);
+                productsDB = await DbContext.Products.Get();
+            }
+            Products = new ObservableCollection<Product>(productsDB.OrderByDescending(x => x.Id).ToList());
         }
         #endregion Methods
 
