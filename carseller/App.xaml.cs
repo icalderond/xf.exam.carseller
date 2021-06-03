@@ -8,7 +8,7 @@ namespace carseller
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new DashboardPage());
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()

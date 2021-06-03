@@ -114,6 +114,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\key_car_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\key_car_icon.imageset\key_car_icon.png" />
+    <ImageAsset Include="Assets.xcassets\key_car_icon.imageset\key_car_icon-1.png" />
+    <ImageAsset Include="Assets.xcassets\key_car_icon.imageset\key_car_icon-2.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -140,5 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Implementation\" />
+    <Folder Include="Assets.xcassets\key_car_icon.imageset\" />
   </ItemGroup>
 </Project>
