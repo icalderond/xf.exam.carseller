@@ -58,7 +58,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Text="Dashboard" FontSize="Title" FontAttributes="Bold" Margin="15,10"/>
+            <Label Grid.Row="0" Text="Dashboard" FontSize="Title" FontAttributes="Bold" Margin="15,10" TextColor="Black"/>
             <ListView Grid.Row="1" ItemsSource="{Binding Products}"
                       SeparatorVisibility="None"
                       VerticalScrollBarVisibility="Never"

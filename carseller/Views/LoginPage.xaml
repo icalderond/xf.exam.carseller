@@ -8,16 +8,15 @@
         <Grid Padding="15,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Frame HasShadow="False" IsClippedToBounds="False" Padding="3" CornerRadius="50" HeightRequest="100" WidthRequest="100" BackgroundColor="Black" VerticalOptions="Center" HorizontalOptions="Center">
                 <Image Source="key_car_icon" VerticalOptions="End" HorizontalOptions="Center"/>
             </Frame>
             <StackLayout Grid.Row="1" VerticalOptions="Start" Spacing="15">
-                <Label Text="Enter your information to login" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
-                <Entry Placeholder="User" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
-                <Entry Placeholder="Password" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text="Enter your information to login" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                <Entry Text="{Binding Username}" Placeholder="User Name" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                <Entry Text="{Binding Password}" Placeholder="Password" TextColor="Black" FontSize="Medium" FontAttributes="Bold" IsPassword="True"/>
                 <Button Text="Login" BackgroundColor="Black" TextColor="White" FontSize="Medium" FontAttributes="Bold" Command="{Binding LoginCommand}"/>
                 <Grid Padding="10">
                     <Grid.GestureRecognizers>
